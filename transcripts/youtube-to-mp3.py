@@ -59,4 +59,10 @@ def download_and_convert_video() -> None:
 
 
 if __name__ == "__main__":
-    download_and_convert_video()
+    while True:
+        download_and_convert_video()
+
+        # Pergunta se o usuário deseja baixar outro vídeo
+        another_video = input('Deseja baixar outro vídeo? (s/n): ')
+        if another_video.lower() != 's':
+            break

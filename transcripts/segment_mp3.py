@@ -5,6 +5,8 @@ Ele utiliza a biblioteca ffmpeg-python para a manipulação do áudio.
 O usuário deve fornecer o caminho do arquivo de áudio e os tempos de início e fim do segmento.
 Os tempos podem ser fornecidos em segundos, minutos (ex.: 30s, 5m) ou no formato HH:MM:SS.
 
+Após segmentar um trecho, o script pergunta se o usuário deseja segmentar outro trecho. O arquivo de saída será salvo no mesmo diretório do arquivo de áudio original.
+
 Requisitos:
 - ffmpeg-python
 - ffmpeg instalado no sistema
@@ -102,4 +104,10 @@ def extract_audio_segment(audio_file_path: Path) -> None:
 
 if __name__ == "__main__":
     audio_file_path = Path(input('Digite o caminho do arquivo de áudio (MP3): '))
-    extract_audio_segment(audio_file_path)
+    while True:
+        extract_audio_segment(audio_file_path)
+
+        # Pergunta se o usuário deseja segmentar outro trecho
+        another_segment = input('Deseja segmentar outro trecho? (s/n): ')
+        if another_segment.lower() != 's':
+            break
